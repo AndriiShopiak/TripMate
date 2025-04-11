@@ -3,6 +3,9 @@ import Login from "../features/auth/Login";
 import Register from "../features/auth/Register";
 import Dashboard from "../features/dashboard/Dashboard";
 import { useAuth } from "../hooks/useAuth";
+import NewTrip from "../pages/NewTrip";
+import { RoutesEnum } from "./RoutesEnum";
+import TripPage from "../pages/TripPage";
 
 export default function AppRouter() {
   const { user, loading } = useAuth();
@@ -12,10 +15,12 @@ export default function AppRouter() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={user ? <Navigate to="/dashboard" /> : <Navigate to="/login" />} />
-        <Route path="/login" element={user ? <Navigate to="/dashboard" /> : <Login />} />
-        <Route path="/register" element={user ? <Navigate to="/dashboard" /> : <Register />} />
-        <Route path="/dashboard" element={user ? <Dashboard /> : <Navigate to="/login" />} />
+        <Route path={RoutesEnum.MAIN} element={user ? <Navigate to={RoutesEnum.DASHBOARD} /> : <Navigate to={RoutesEnum.LOGIN} />} />
+        <Route path={RoutesEnum.LOGIN} element={user ? <Navigate to={RoutesEnum.DASHBOARD} /> : <Login />} />
+        <Route path={RoutesEnum.REGISTER} element={user ? <Navigate to={RoutesEnum.DASHBOARD} /> : <Register />} />
+        <Route path={RoutesEnum.DASHBOARD} element={user ? <Dashboard /> : <Navigate to={RoutesEnum.LOGIN} />} />
+        <Route path={RoutesEnum.NEW_TRIP} element={user ? <NewTrip /> : <Navigate to={RoutesEnum.LOGIN} />} />
+        <Route path={RoutesEnum.TRIP} element={user ? <TripPage /> : <Navigate to={RoutesEnum.LOGIN} />} />
       </Routes>
     </BrowserRouter>
   );
