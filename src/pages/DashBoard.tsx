@@ -2,8 +2,7 @@ import { useEffect, useState } from "react";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { db, auth } from "../lib/firebase";
 import { Link } from "react-router-dom";
-import Welcome from "../components/welcome/welcome";
-import LogOutBtn from "../components/log-out-btn/LogOut";
+import Header from "../components/header/Header";
 
 type Trip = {
   id: string;
@@ -38,10 +37,7 @@ export default function Dashboard() {
 
   return (
     <>
-      <div className="flex justify-between items-center p-6 bg-gray-100 shadow-md rounded-lg mb-6">
-        <Welcome />
-        <LogOutBtn />
-      </div>
+    <Header />
       <div className="p-6">
         <div className="flex justify-between items-center mb-6">
           <h1 className="text-2xl font-bold">Мої подорожі</h1>
