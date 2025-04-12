@@ -3,6 +3,10 @@ import { useParams } from "react-router-dom";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../lib/firebase";
 import { useEffect, useState } from "react";
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import L from "leaflet";
+
+const position: [number, number] = [48.3794, 31.1656];
 
 export default function TripPage() {
   const { id } = useParams();
@@ -48,7 +52,17 @@ export default function TripPage() {
       </div>
 
       <div className="border-t pt-4 mt-4">
-        <p className="text-gray-500 italic">Тут буде карта, місця, нотатки тощо ✨</p>
+        <div className="h-[400px] mt-4 rounded overflow-hidden border">
+          <MapContainer center={position} zoom={6} scrollWheelZoom={false} className="h-full w-full">
+            <TileLayer
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              attribution='&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors'
+            />
+            <Marker position={position}>
+              <Popup>Центр подорожі 🚗</Popup>
+            </Marker>
+          </MapContainer>
+        </div>
       </div>
     </div>
   );
