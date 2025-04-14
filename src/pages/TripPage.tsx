@@ -3,8 +3,10 @@ import { useParams } from "react-router-dom";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../lib/firebase";
 import { useEffect, useState } from "react";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-import L from "leaflet";
+import { MapContainer, TileLayer } from "react-leaflet";
+import LocationMarkers from "../components/location-marker/LocationMarkers";
+import LocationList from "../components/location-list/LocationList";
+
 
 const position: [number, number] = [48.3794, 31.1656];
 
@@ -53,17 +55,17 @@ export default function TripPage() {
 
       <div className="border-t pt-4 mt-4">
         <div className="h-[400px] mt-4 rounded overflow-hidden border">
-          <MapContainer center={position} zoom={6} scrollWheelZoom={false} className="h-full w-full">
-            <TileLayer
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-              attribution='&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors'
-            />
-            <Marker position={position}>
-              <Popup>Центр подорожі 🚗</Popup>
-            </Marker>
-          </MapContainer>
+        <MapContainer center={position} zoom={6} scrollWheelZoom={true} className="h-full w-full">
+          <TileLayer
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            attribution='&copy; OpenStreetMap'
+          />
+          <LocationMarkers tripId={trip.id} />
+        </MapContainer>
+
         </div>
       </div>
+      <LocationList tripId={trip.id} />
     </div>
   );
 }
