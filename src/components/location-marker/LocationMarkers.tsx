@@ -8,12 +8,14 @@ import {
   import { collection, onSnapshot } from "firebase/firestore";
   import { db } from "../../lib/firebase";
 import AddLocationModal from "../modal/AddLocationModal";
+import L from "leaflet";
   
   type Props = {
     tripId: string;
   };
   
   type Location = {
+    type: "place" | "food" | "hotel" | "event";
     id: string;
     name: string;
     lat: number;
@@ -47,6 +49,21 @@ import AddLocationModal from "../modal/AddLocationModal";
         setShowModal(true);
       },
     });
+
+    const iconByType: Record<string, string> = {
+      place: "📍",
+      food: "🍽️",
+      hotel: "🏨",
+      event: "🎉",
+    };
+  
+    const createEmojiIcon = (emoji: string) =>
+      L.divIcon({
+        html: `<div style="font-size: 24px">${emoji}</div>`,
+        className: "",
+        iconSize: [24, 24],
+        iconAnchor: [12, 24],
+      });
     
   
     return (
@@ -60,7 +77,7 @@ import AddLocationModal from "../modal/AddLocationModal";
       />
 )}
         {locations.map((loc) => (
-          <Marker key={loc.id} position={[loc.lat, loc.lng]}>
+          <Marker key={loc.id} position={[loc.lat, loc.lng]} icon={createEmojiIcon(iconByType[loc.type] || "📍")}>
             <Popup>{loc.name}</Popup>
           </Marker>
         ))}

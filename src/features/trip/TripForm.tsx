@@ -3,6 +3,7 @@ import { useState } from "react";
 import { db, auth } from "../../lib/firebase";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
+import Button from "../../ui/Button";
 
 export default function TripForm() {
   const [name, setName] = useState("");
@@ -55,9 +56,7 @@ export default function TripForm() {
         onChange={(e) => setEndDate(e.target.value)}
         required
       />
-      <button type="submit" className="bg-blue-600 text-white py-2 rounded">
-        Створити подорож
-      </button>
+      <Button type="submit">Створити подорож</Button>
     </form>
   );
 }

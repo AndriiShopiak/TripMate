@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { collection, onSnapshot, deleteDoc, doc } from "firebase/firestore";
 import { db } from "../../lib/firebase";
+import Button from "../../ui/Button";
 
 type Props = {
   tripId: string;
@@ -51,15 +52,8 @@ export default function LocationList({ tripId }: Props) {
             {loc.type}
           </span>
         </div>
-        <button
-          onClick={() => handleDelete(loc.id)}
-          className="text-red-500 hover:text-red-700 text-sm"
-          title="Видалити локацію"
-        >
-          🗑️
-        </button>
+        <Button variant="danger" title="Видалити" onClick={() => handleDelete(loc.id)}>🗑️</Button>
       </div>
-      
       ))}
     </div>
   );

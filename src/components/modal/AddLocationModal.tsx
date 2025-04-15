@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Dialog } from "@headlessui/react";
 import { addDoc, collection } from "firebase/firestore";
 import { db, auth } from "../../lib/firebase";
+import Button from "../../ui/Button";
 
 type Props = {
   isOpen: boolean;
@@ -63,9 +64,8 @@ export default function AddLocationModal({ isOpen, onClose, tripId, position }: 
             <option value="hotel">Готель</option>
             <option value="event">Подія</option>
           </select>
-          <button type="submit" className="bg-blue-600 text-white py-2 rounded">
-            Зберегти
-          </button>
+          <Button type="submit">Зберегти</Button>
+          <Button variant="secondary" onClick={onClose}>Скасувати</Button>
         </form>
       </div>
     </Dialog>
