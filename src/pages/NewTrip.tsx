@@ -1,6 +1,6 @@
 // src/pages/NewTrip.tsx
 import Header from "../components/header/Header";
-import TripForm from "../features/trip/TripForm";
+import TripForm from "../components/trip-form/TripForm";
 
 export default function NewTrip() {
   return (

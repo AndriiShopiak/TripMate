@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import Login from "../features/auth/Login";
+import Login from "../components/login/Login";
 import { RoutesEnum } from "../routes/RoutesEnum";
 
 export default function LoginPage() {

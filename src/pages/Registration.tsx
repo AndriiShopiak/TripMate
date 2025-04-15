@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { RoutesEnum } from "../routes/RoutesEnum";
-import Register from "../features/auth/Register";
+import Register from "../components/registration/Register";
 
 export default function RegistartionPage() {
   return (
