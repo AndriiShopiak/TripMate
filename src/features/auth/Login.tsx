@@ -3,6 +3,7 @@ import { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../lib/firebase";
 import { useNavigate } from "react-router-dom";
+import Button from "../../ui/Button";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -24,7 +25,7 @@ export default function Login() {
       <h1 className="text-xl font-bold">Вхід</h1>
       <input value={email} onChange={e => setEmail(e.target.value)} placeholder="Email" />
       <input value={password} onChange={e => setPassword(e.target.value)} placeholder="Пароль" type="password" />
-      <button type="submit" className="bg-green-600 text-white py-2 rounded">Увійти</button>
+      <Button type="submit">Увійти</Button>
     </form>
   );
 }
