@@ -3,7 +3,12 @@ import { useState } from "react";
 import { db, auth } from "../../lib/firebase";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
-import Button from "../../ui/Button";
+import {
+  Box,
+  Button,
+  Stack,
+  TextField
+} from "@mui/material";
 
 export default function TripForm() {
   const [name, setName] = useState("");
@@ -36,27 +41,40 @@ export default function TripForm() {
   };
 
   return (
-    <form onSubmit={handleCreate} className="flex flex-col gap-4 max-w-md">
-      <input
-        type="text"
-        placeholder="Назва подорожі"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-        required
-      />
-      <input
-        type="date"
-        value={startDate}
-        onChange={(e) => setStartDate(e.target.value)}
-        required
-      />
-      <input
-        type="date"
-        value={endDate}
-        onChange={(e) => setEndDate(e.target.value)}
-        required
-      />
-      <Button type="submit">Створити подорож</Button>
-    </form>
+    <Box component="form" onSubmit={handleCreate}>
+        <Stack spacing={3}>
+          <TextField
+            label="Назва подорожі"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+            fullWidth
+          />
+
+          <TextField
+            label="Дата початку"
+            type="date"
+            value={startDate}
+            onChange={(e) => setStartDate(e.target.value)}
+            required
+            InputLabelProps={{ shrink: true }}
+            fullWidth
+          />
+
+          <TextField
+            label="Дата завершення"
+            type="date"
+            value={endDate}
+            onChange={(e) => setEndDate(e.target.value)}
+            required
+            InputLabelProps={{ shrink: true }}
+            fullWidth
+          />
+
+          <Button variant="contained" color="primary" type="submit">
+            Створити подорож
+          </Button>
+        </Stack>
+      </Box>
   );
 }
