@@ -1,9 +1,19 @@
 // src/components/AddLocationModal.tsx
 import { useState } from "react";
-import { Dialog } from "@headlessui/react";
+// import { Dialog } from "@headlessui/react";
+import {
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  TextField,
+  Button,
+  MenuItem,
+  Stack,
+} from "@mui/material";
 import { addDoc, collection } from "firebase/firestore";
 import { db, auth } from "../../lib/firebase";
-import Button from "../../ui/Button";
+// import Button from "../../ui/Button";
 
 type Props = {
   isOpen: boolean;
@@ -35,39 +45,48 @@ export default function AddLocationModal({ isOpen, onClose, tripId, position }: 
   };
 
   return (
-    <Dialog open={isOpen} onClose={onClose} className="fixed inset-0 z-1000 flex items-center justify-center">
-      <div className="fixed inset-0 bg-black/30" />
-      <div className="bg-white rounded-xl p-6 z-10 w-full max-w-md shadow-xl">
-        <Dialog.Title className="text-xl font-bold mb-4">Нова локація 📍</Dialog.Title>
-        <form onSubmit={handleSubmit} className="flex flex-col gap-3">
-          <input
-            type="text"
-            placeholder="Назва"
+    <Dialog open={isOpen} onClose={onClose} fullWidth maxWidth="sm">
+      <DialogTitle>Нова локація 📍</DialogTitle>
+      <DialogContent>
+        <Stack spacing={3} mt={1}>
+          <TextField
+            label="Назва локації"
             value={name}
             onChange={(e) => setName(e.target.value)}
+            fullWidth
             required
-            className="border rounded p-2"
           />
-          <textarea
-            placeholder="Опис"
+          <TextField
+            label="Опис локації"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            className="border rounded p-2"
+            fullWidth
+            required
           />
-          <select
+
+          <TextField
+            select
+            label="Тип локації"
             value={type}
             onChange={(e) => setType(e.target.value)}
-            className="border rounded p-2"
+            fullWidth
           >
-            <option value="place">Місце</option>
-            <option value="food">Їжа</option>
-            <option value="hotel">Готель</option>
-            <option value="event">Подія</option>
-          </select>
-          <Button type="submit">Зберегти</Button>
-          <Button variant="secondary" onClick={onClose}>Скасувати</Button>
-        </form>
-      </div>
+            <MenuItem value="place">Місце</MenuItem>
+            <MenuItem value="food">Їжа</MenuItem>
+            <MenuItem value="hotel">Готель</MenuItem>
+            <MenuItem value="event">Подія</MenuItem>
+          </TextField>
+        </Stack>
+      </DialogContent>
+
+      <DialogActions>
+        <Button onClick={onClose} color="inherit">
+          Скасувати
+        </Button>
+        <Button onClick={handleSubmit} variant="contained">
+          Зберегти
+        </Button>
+      </DialogActions>
     </Dialog>
   );
 }

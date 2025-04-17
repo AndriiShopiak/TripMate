@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { MapContainer, TileLayer } from "react-leaflet";
 import LocationMarkers from "../components/location-marker/LocationMarkers";
 import LocationList from "../components/location-list/LocationList";
+import Loader from "../components/loader/Loader";
 
 
 const position: [number, number] = [48.3794, 31.1656];
@@ -34,7 +35,7 @@ export default function TripPage() {
     fetchTrip();
   }, [id]);
 
-  if (loading) return <p className="p-6">Завантаження...</p>;
+  if (loading) return <Loader />;
   if (!trip) return <p className="p-6">Подорож не знайдена 😢</p>;
 
   return (

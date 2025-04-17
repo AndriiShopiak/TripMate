@@ -1,14 +1,15 @@
+import { Box, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 
 export default function Welcome() {
 
   return (
-    <div>
-      <h1 className="text-2xl font-bold text-gray-800">
-        <Link to={"/dashboard"}>
-          👋 Вітаємо у TripMate!
-        </Link>
-      </h1>
-    </div>
+    <Box>
+      <Typography variant="h4" component="h1" fontWeight="bold" color="text.primary">
+      <Link to="/dashboard" style={{ textDecoration: 'none', color: 'inherit' }}>
+        👋 Вітаємо у TripMate!
+      </Link>
+      </Typography>
+    </Box>
   );
 }
