@@ -57,7 +57,7 @@ export default function TripPage() {
 
       <div className="border-t pt-4 mt-4">
         <div className="h-[400px] mt-4 rounded overflow-hidden border">
-          <MapContainer center={position} zoom={6} scrollWheelZoom={true} className="h-full w-full">
+          <MapContainer center={position} zoom={6} scrollWheelZoom={false} className="h-full w-full">
             <TileLayer
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
               attribution='&copy; OpenStreetMap' />
