@@ -1,6 +1,5 @@
-// src/components/AddLocationModal.tsx
+
 import { useState } from "react";
-// import { Dialog } from "@headlessui/react";
 import {
   Dialog,
   DialogTitle,
@@ -13,7 +12,6 @@ import {
 } from "@mui/material";
 import { addDoc, collection } from "firebase/firestore";
 import { db, auth } from "../../lib/firebase";
-// import Button from "../../ui/Button";
 
 type Props = {
   isOpen: boolean;

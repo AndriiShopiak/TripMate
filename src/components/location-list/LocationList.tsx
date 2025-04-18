@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { collection, onSnapshot, deleteDoc, doc } from "firebase/firestore";
 import { db } from "../../lib/firebase";
-import Button from "../../ui/Button";
+import DeleteIcon from '@mui/icons-material/Delete';
 
 type Props = {
   tripId: string;
@@ -52,7 +52,7 @@ export default function LocationList({ tripId }: Props) {
             {loc.type}
           </span>
         </div>
-        <Button variant="danger" title="Видалити" onClick={() => handleDelete(loc.id)}>🗑️</Button>
+        <DeleteIcon sx={{cursor: 'pointer'}} onClick={() => handleDelete(loc.id)} />
       </div>
       ))}
     </div>
