@@ -44,28 +44,28 @@ export default function LocationList({ tripId }: Props) {
       <div className="flex flex-col gap-2 mt-4">
         <h2 className="text-lg font-semibold">📍 Локації подорожі</h2>
         {locations.map((loc) => (
-          <div key={loc.id} className="border rounded p-3 bg-gray-50 flex justify-between items-center">
-          <div>
-            <p className="font-bold">{loc.name}</p>
-            <p className="text-sm text-gray-600">{loc.description}</p>
-            <span className="text-xs bg-blue-100 text-blue-700 rounded px-2 py-0.5 inline-block mt-1">
+            <div key={loc.id} className="border rounded p-3 bg-gray-50 flex justify-between items-center">
+            <div>
+              <p className="font-bold">{loc.name}</p>
+              <p className="text-sm text-gray-600">{loc.description}</p>
+              <span className="text-xs bg-blue-100 text-blue-700 rounded px-2 py-0.5 inline-block mt-1">
               {loc.type}
-            </span>
-          </div>
-          <IconButton
-                onClick={() => handleEdit()}
-                sx={{ cursor: 'pointer', color: '#1976d2', marginLeft: 'auto' }}
-              >
+              </span>
+            </div>
+            <IconButton
+              onClick={() => handleEdit()}
+              sx={{ cursor: 'pointer', color: '#1976d2', marginLeft: 'auto' }}
+            >
               <EditIcon />
-          </IconButton>
-          <IconButton
-                onClick={() => handleDelete(loc.id)}
-                sx={{cursor: 'pointer' , color: '#d32f2f', marginLeft: '10px'}}
-              >
+            </IconButton>
+            <IconButton
+              onClick={() => handleDelete(loc.id)}
+              sx={{ cursor: 'pointer', color: '#d32f2f', marginLeft: '10px' }}
+            >
               <DeleteIcon />
-          </IconButton>
-          <EditLocationModal isOpen={showEdit} onClose={() => setShowEdit(false)} tripId={loc.id} position={loc} />
-        </div>
+            </IconButton>
+            <EditLocationModal isOpen={showEdit} onClose={() => setShowEdit(false)} tripId={loc.id} position={loc} />
+            </div>
         ))}
       </div>
     </>

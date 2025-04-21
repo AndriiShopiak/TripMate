@@ -1,5 +1,5 @@
 // src/pages/TripPage.tsx
-import { useParams } from "react-router-dom";
+import { Link, Navigate, useParams } from "react-router-dom";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../lib/firebase";
 import { useEffect, useState } from "react";
@@ -8,6 +8,8 @@ import LocationMarkers from "../components/location-marker/LocationMarkers";
 import LocationList from "../components/location-list/LocationList";
 import Loader from "../components/loader/Loader";
 import Header from "../components/header/Header";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { IconButton } from "@mui/material";
 
 
 const position: [number, number] = [48.3794, 31.1656];
@@ -41,6 +43,15 @@ export default function TripPage() {
 
   return (
     <><Header /><div className="p-6">
+      <div className="flex items-center mb-4">
+        <IconButton
+          onClick={() => window.history.back()}
+          title="Go back"
+          sx={{ cursor: 'pointer', color: '#1976d2' }}
+        >
+          <ArrowBackIcon />
+        </IconButton>
+      </div>
       <h1 className="text-3xl font-bold mb-2">{trip.name}</h1>
       <p className="text-gray-600 mb-4">
         {trip.startDate} — {trip.endDate}
